@@ -26,7 +26,7 @@ const ash = require('express-async-handler');
 
 /* GET ALL CAMPUSES */
 router.get('/', ash(async(req, res) => {
-  let campuses = await Campus.findAll({include: [Student]});  // Get all campuses and their associated students
+  let campuses = await Campus.findAll({include: [Student]});  // Get all campuses and their associated student
   res.status(200).json(campuses);  // Status code 200 OK - request succeeded
 }));
 
@@ -64,6 +64,7 @@ router.put('/:id', ash(async(req, res) => {
   let campus = await Campus.findByPk(req.params.id, {include: [Student]});  // Get the campus and its associated students
   res.status(201).json(campus);  // Status code 201 Created - successful creation of a resource
 }))
+
 
 // Export router, so that it can be imported to construct the apiRouter (app.js)
 module.exports = router;
